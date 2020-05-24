@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[3]:
 
 
 from pydub import AudioSegment
@@ -88,6 +88,41 @@ cuttingBasedOnTime("dataCutting/dropping_object/Vol.87 Drop Objects Sound Effect
 cuttingBasedOnTime("dataCutting/dropping_object/Vol.87 Drop Objects Sound Effects/10. Dropping Bag Of Bread by qubodup Id-189312.wav",2,5)
 cuttingBasedOnTime("dataCutting/dropping_object/Vol.87 Drop Objects Sound Effects/10. Dropping Bag Of Bread by qubodup Id-189312.wav",2,6)
 cuttingBasedOnTime("dataCutting/dropping_object/Vol.87 Drop Objects Sound Effects/10. Dropping Bag Of Bread by qubodup Id-189312.wav",5,10)
+
+
+# In[5]:
+
+
+# dcase2018 absence
+file_list_ab =glob.glob('dataCutting/absence/*')
+print(file_list_ab)
+
+
+# In[6]:
+
+
+def cuttingBasedOnTime_half(wav):
+    if wav.endswith('.wav') :
+        file_id=os.path.basename(wav)
+        print(file_id)
+        original = AudioSegment.from_wav(wav)
+        #pydub는 milliseconds 단위를 사용한다
+        t1=0*1000
+        t2=5*1000
+        t3=10*1000
+        front_wav= original[t1:t2]
+        front_wav.export('front'+file_id,format="wav")
+        backWav= original[t2:t3]
+        backWav.export('back'+file_id,format="wav")
+
+
+# In[11]:
+
+
+for wav_ab in file_list_ab:
+    if wav_ab.endswith('.wav') :
+       cuttingBasedOnTime_half(wav_ab)
+        
 
 
 # In[ ]:
