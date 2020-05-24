@@ -1,3 +1,4 @@
 5class_img.tgz filter=lfs diff=lfs merge=lfs -text
 5class__img.tgz filter=lfs diff=lfs merge=lfs -text
 5_class_img.tgz filter=lfs diff=lfs merge=lfs -text
+assist_cnn_img.zip filter=lfs diff=lfs merge=lfs -text
