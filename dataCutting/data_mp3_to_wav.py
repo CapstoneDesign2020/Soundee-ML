@@ -38,15 +38,14 @@ for sound in file_list_youtube:
     formatFromMp3ToWav(sound)
 
 
-# In[61]:
+# In[100]:
 
 
 #5초마다 자르기
-def cuttingBasedOnTime5s(wav):
-    if wav.endswith('.wav') :
-        original = AudioSegment.from_wav(wav)
-        length=original.duration_seconds #오디오 길이
-        file_id=os.path.basename(wav)
+def cuttingBasedOnTime5s(wav,file_id):
+        length=wav.duration_seconds #오디오 길이
+        # print(file_id+str(length))
+        # print()
         t1=0*1000
         t2=5*1000
         while length >=5:
@@ -57,12 +56,70 @@ def cuttingBasedOnTime5s(wav):
             t2+=5*1000
 
 
-# In[62]:
+# In[102]:
 
 
 file_list_youtube_wav =glob.glob('dataCutting/baby_crying/wav/*')
 print(file_list_youtube_wav)
 
-for wav in file_list_youtube_wav:
-    cuttingBasedOnTime5s(wav)
+for wav_file in file_list_youtube_wav:
+    if wav_file.endswith('.wav') :
+        wav = AudioSegment.from_wav(wav_file)
+        file_id=os.path.basename(wav_file)
+        cuttingBasedOnTime5s(wav,file_id)
+
+
+# In[103]:
+
+
+file_list_dog =glob.glob('dataCutting/dog/*')
+print(file_list_dog)
+
+for wav_file in file_list_dog:
+    if wav_file.endswith('.wav') :
+        file_id=os.path.basename(wav_file)
+        wav = AudioSegment.from_wav(wav_file)
+        length=wav.duration_seconds #오디오 길이
+        if(length>=5) :
+            cuttingBasedOnTime5s(wav,file_id)
+        else :
+            addSilenceWav(wav,length,file_id)
+            
+
+
+# In[104]:
+
+
+#silence sound 불러오기
+silence05=AudioSegment.from_wav('dataCutting/silence/5_silence.wav')
+silence04=AudioSegment.from_wav('dataCutting/silence/4_silence.wav')
+silence03=AudioSegment.from_wav('dataCutting/silence/3_silence.wav')
+silence02=AudioSegment.from_wav('dataCutting/silence/2_silence.wav')
+silence01=AudioSegment.from_wav('dataCutting/silence/1_silence.wav')
+
+#공백 추가 하고 5초로 wav file추출하는 함수
+def addSilenceWav(wav1,length,file_id):
+    # print("addSlice")
+    # print(length)
+    if length<=1:
+        add_silence_wav=wav1+silence05
+    elif length <=2 :
+        add_silence_wav=wav1+silence04
+    elif length <=3 :
+        add_silence_wav=wav1+silence03
+    elif length <=4:
+        add_silence_wav=wav1+silence02
+    elif length <=5:
+        add_silence_wav=wav1+silence01
+            
+    t1=0*1000
+    t2=5*1000
+    add_silence_wav=add_silence_wav[t1:t2]
+    add_silence_wav.export('add_silence'+file_id,format="wav")
+
+
+# In[ ]:
+
+
+
 
