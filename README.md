@@ -26,6 +26,15 @@ class 종류 :
 
 #### CNN 모델 학습
 * Resnet 구조 50개의 layer로 학습 진행
-* 
+* 파라메터 구성은 다음과 같다
+  ```
+  num_layers = 50
+  image_shape = '3,256,256'
+  num_training_samples = 7550
+  num_classes = 4
+  epochs = 20
+  top_k = '2'
+  train_instance_type='ml.p3.2xlarge'
+  ```
 
 #### Endpoint
