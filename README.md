@@ -1,7 +1,10 @@
 # Soundee-ML
 ## 청각장애인을 위한 딥러닝 기반 생활 소리 알림 애플리케이션
+
+
 <img src="https://user-images.githubusercontent.com/45596615/97182829-5d475080-17e0-11eb-9d16-614e783db7d9.png" width="500" />
----
+
+* * *
 프로세스 : 전처리(Librosa) → feature 추출 → 2D 이미지화 → CNN Resnet → endpoint 생성
 
 class 종류 :
@@ -36,5 +39,3 @@ class 종류 :
   top_k = '2'
   train_instance_type='ml.p3.2xlarge'
   ```
-
-#### Endpoint
